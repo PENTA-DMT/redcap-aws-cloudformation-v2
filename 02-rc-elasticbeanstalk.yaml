@@ -568,7 +568,7 @@ Resources:
       MasterUserPassword: !Ref DatabaseMasterPassword
       DatabaseName: 'redcap'
       Engine: aurora-mysql
-      EngineVersion: 5.7
+      EngineVersion: 8.0
       StorageEncrypted: 'True'
       Port: 3306
       DBSubnetGroupName:
