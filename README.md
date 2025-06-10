@@ -49,7 +49,7 @@ Before deploying an application on AWS that transmits, processes, or stores prot
 ### Pre-requisite tasks
 0.1. Follow the instructions on the [REDCap website](https://projectredcap.org/) to obtain a copy of the REDCap source files.
 
-0.2. The template will allow you to input your REDCap Community username and password to automatically download your preferred version of REDCap.  If you choose, you can also provide the REDCap application package by uploading it to a private S3 bucket.  If you want to provide it via the S3 bucket, [Create a private S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html) and [upload your REDCap source file](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) into it.  Ensure that you do not make either the bucket or the source file publicly readable.  This CloudFormation template also creates two additional S3 buckets, so make sure you aren't near the [limit of your maximum number of buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) (default is 100).
+0.2. The template will allow you to input your REDCap Community username and password to automatically download your preferred version of REDCap (**This does not always work, prefer the bucket method**).  If you choose, you can also provide the REDCap application package by uploading it to a private S3 bucket.  If you want to provide it via the S3 bucket, [Create a private S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html) and [upload your REDCap source file](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) into it.  Ensure that you do not make either the bucket or the source file publicly readable.  This CloudFormation template also creates two additional S3 buckets, so make sure you aren't near the [limit of your maximum number of buckets](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) (default is 100).
 
 0.3. [Obtain your Amazon SES SMTP Credentials](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html) using the Amazon SES console.  Download your credentials and store them in a safe place.
 
@@ -61,6 +61,13 @@ It is also strongly recommended that you implement a [method to handle email bou
 
 #### If you intend to use Route 53 for DNS or ACM to provide an SSL certificate
 0.5. Automatically provisioning and applying an SSL certificate with this CloudFormation template using ACM requires the use of Route 53 for your DNS service.  If you have not already done so, [create a new Route 53 Hosted Zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html), [transfer registration of an existing domain to Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-transfer-to-route-53.html), or [transfer just your DNS service to Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingDNS.html).
+
+**To install redcap in its own account**:  
+0.5.1. create a top level hosted zone (e.g. pentafoundation.info)  
+0.5.2. create a secondary level hosted zone (e.g. redcap.pentafoundation.info) and copy the NS records  
+0.5.3. in the main account Route53, find the top level domain hosted zone (e.g. pentafoundation.info) and create a new NS record with the records copied above  
+0.5.4. after you launch the stack creation in CloudFormation a new ACM certificate will be created. Navigate to ACM, find the new certificate and create new DNS records to validate it. This will create a new validation record in the second level domain hosted zone which is needed for the stack to complete deployment  
+0.5.5. after stack deployment is complete, go to the second level domain hosted zone, create a new record of type Alias, flag the alias check box, select Elastic Beanstalk app, select region, select the new elastic beanstalk environment endpoint. It can take a few minutes for the new domain to be reachable
 
 If you do not intend to use Route 53 and ACM to automatically generate and provide an SSL certificate, [an SSL certificate can be applied to your environment after it is deployed](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-elb.html).
 
