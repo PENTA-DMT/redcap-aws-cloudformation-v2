@@ -4,7 +4,7 @@
 
 <a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=myredcapstack100&templateURL=https://redcap-aws-cloudformation.s3.amazonaws.com/00-master-rc.yaml" target="_blank"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/></a> 
 
-Click the launch button above to begin the process of deploying a REDCap environment on AWS CloudFormation. NOTE: This launch button already has the *US East* region pre-selected as part of the URL (i.e., &region=us-east-1), but once you click the button, you can change your preferred deployment region in AWS by selecting it from the top bar of the AWS Console, after which you may need to provide the Amazon S3 Template URL (https://s3.amazonaws.com/redcap-aws-cloudformation/00-master-rc.yaml).
+Click the launch button above to begin the process of deploying a REDCap environment on AWS CloudFormation. NOTE: This launch button already has the *US East* region pre-selected as part of the URL (i.e., &region=us-east-1), but once you click the button, you can change your preferred deployment region in AWS by selecting it from the top bar of the AWS Console, after which you may need to provide the Amazon S3 Template URL (00-master-rc.yaml).
 
 **This automation has now been updated to deploy using Amazon Linux 2!  If you'd like to upgrade your existing Amazon Linux 1 environment, [instructions can be found here.](./AmazonLinux2upgradescripts/)**
 
@@ -67,7 +67,7 @@ If you do not intend to use Route 53 and ACM to automatically generate and provi
 ### Deployment Instructions
 0. This template must be run by an AWS IAM User who has sufficient permission to create the required resources.  These resources include:  VPC, IAM User and Roles, S3 Bucket, EC2 Instance, ALB, Elastic Beanstalk, Route53 entries, and ACM certificates.  If you are not an Administrator of the AWS account you are using, please check with them before running this template to ensure you have sufficient permission.  
 
-1. From your AWS account, [open the CloudFormation Management Console](https://console.aws.amazon.com/cloudformation/) and choose **Create Stack**.  From there, copy and paste the following URL in the **Specify an Amazon S3 template URL**, and choose **Next**.  https://s3.amazonaws.com/redcap-aws-cloudformation/00-master-rc.yaml
+1. From your AWS account, [open the CloudFormation Management Console](https://console.aws.amazon.com/cloudformation/) and choose **Create Stack**.  From there, copy and paste the following URL in the **Specify an Amazon S3 template URL**, and choose **Next**.  00-master-rc.yaml
 ![alt-text](https://github.com/vanderbilt-redcap/redcap-aws-cloudformation/blob/master/images/redcap_cfn_select_template.png "CFN Select Template")
 
 
