@@ -78,7 +78,8 @@ If you do not intend to use Route 53 and ACM to automatically generate and provi
 ![alt-text](https://github.com/vanderbilt-redcap/redcap-aws-cloudformation/blob/master/images/redcap_cfn_select_template.png "CFN Select Template")
 
 
-2. On the next screen, provide a **Stack Name** and a few other parameters for your REDCap environment.  A description is provided for each parameter to explain its function.  Please keep in mind that the **Elastic Beanstalk Endpoint Name** must be unique within your AWS Region.  You can check to see if an endpoint name is in use by checking for an existing DNS entry using the 'nslookup' command (nslookup (EBEndpoint).(region).elasticbeanstalk.com).  If the command returns an IP address, that means that the name is in use and you should pick a different name.  When you've provided appropriate values for the **Parameters**, choose **Next**.
+2. On the next screen, provide a **Stack Name** and a few other parameters for your REDCap environment.  A description is provided for each parameter to explain its function.  Please keep in mind that the **Elastic Beanstalk Endpoint Name** must be unique within your AWS Region.  You can check to see if an endpoint name is in use by checking for an existing DNS entry using the 'nslookup' command (nslookup (EBEndpoint).(region).elasticbeanstalk.com).  If the command returns an IP address, that means that the name is in use and you should pick a different name.  Database Tier and Web Tier Parameters should be configured as in the picture below. When you've provided appropriate values for the **Parameters**, choose **Next**.
+![alt-text](https://github.com/PENTA-DMT/redcap-aws-cloudformation/blob/master/images/database_web_tier_settings.png "Database and Web Tiers settings")
 
 3. On the next screen, you can provide some other optional information like tags at your discretion, or just choose **Next**.
 
